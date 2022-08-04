@@ -159,6 +159,7 @@ function love.load()
         if pieceStructures[pieceType][testRotation][y][x] ~= ' ' and (
           testX + x < 1
           or testX + x > gridXCount
+          or testY + y > gridYCount
         ) then
           return false
         end
