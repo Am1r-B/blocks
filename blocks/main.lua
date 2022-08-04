@@ -149,34 +149,58 @@ function love.load()
   pieceY = 0
   
   timer = 0
+  
+  function canPieceMove(testX, testY, testRotation)
+    return true
+  end
 end
 
 function love.update(dt)
   timer = timer + dt
   if timer >= 0.5 then
     timer = 0
-    pieceY = pieceY + 1
+    
+    local testY = pieceY + 1
+    if canPieceMove(pieceX, testY, pieceRotation) then
+      pieceY = testY
+    end
   end
 end
 
 function love.keypressed(key)
   if key == 'x' then
-    pieceRotation = pieceRotation + 1
-    if pieceRotation > #pieceStructures[pieceType] then
-      pieceRotation = 1
+    local testRotation = pieceRotation + 1
+    if testRotation > #pieceStructures[pieceType] then
+      testRotation = 1
+    end
+    
+    if canPieceMove(pieceX, pieceY, testRotation) then
+      pieceRotation = testRotation
     end
     
   elseif key == 'z' then
-    pieceRotation = pieceRotation - 1
-    if pieceRotation < 1 then
-      pieceRotation = #pieceStructures[pieceType]
+    local testRotation = pieceRotation - 1
+    if testRotation < 1 then
+      testRotation = #pieceStructures[pieceType]
+    end
+    
+    if canPieceMove(pieceX, pieceY, testRotation) then
+      pieceRotation = testRotation
     end
     
   elseif key == 'left' then
-    pieceX = pieceX - 1
+    local testX = pieceX - 1
+    
+    if canPieceMove(testX, pieceY, pieceRotation) then
+      pieceX = testX
+    end
     
   elseif key == 'right' then
-    pieceX = pieceX + 1
+    local testX = pieceX + 1
+    
+    if canPieceMove(testX, pieceY, pieceRotation) then
+      pieceX = testX
+    end
     
   -- Temporary
   elseif key == 'down' then
