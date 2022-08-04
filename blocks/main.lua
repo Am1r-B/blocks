@@ -224,6 +224,11 @@ function love.keypressed(key)
       pieceX = testX
     end
     
+  elseif key == 'c' then
+    while canPieceMove(pieceX, pieceY + 1, pieceRotation) do
+      pieceY = pieceY + 1
+    end
+    
   -- Temporary
   elseif key == 'down' then
     pieceType = pieceType + 1
