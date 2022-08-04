@@ -160,6 +160,7 @@ function love.load()
           testX + x < 1
           or testX + x > gridXCount
           or testY + y > gridYCount
+          or inert[testY + y][testX + x] ~= ' '
         ) then
           return false
         end
@@ -168,6 +169,9 @@ function love.load()
     
     return true
   end
+  
+  -- Temporary
+  inert[8][5] = 'z'
 end
 
 function love.update(dt)
