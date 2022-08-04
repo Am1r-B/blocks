@@ -151,6 +151,15 @@ function love.load()
   timer = 0
   
   function canPieceMove(testX, testY, testRotation)
+    for y = 1, 4 do
+      for x = 1, 4 do
+        if pieceStructures[pieceType][testRotation][y][x] ~= ' '
+        and testX + x < 1 then
+          return false
+        end
+      end
+    end
+    
     return true
   end
 end
