@@ -1,6 +1,11 @@
+function love.load()
+  love.graphics.setBackgroundColor(1, 1, 1)
+end
+
 function love.draw()
   for y = 1, 18 do
     for x = 1, 10 do
+      love.graphics.setColor(.87, .87, .87)
       local pieceSize = 20
       local pieceDrawSize = pieceSize - 1
       love.graphics.rectangle(
