@@ -142,6 +142,9 @@ function love.load()
       }
     }
   }
+  
+  pieceType = 1
+  pieceRotation = 1
 end
 
 function love.draw()
