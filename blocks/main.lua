@@ -156,8 +156,10 @@ function love.load()
   function canPieceMove(testX, testY, testRotation)
     for y = 1, pieceXCount do
       for x = 1, pieceYCount do
-        if pieceStructures[pieceType][testRotation][y][x] ~= ' '
-        and testX + x < 1 then
+        if pieceStructures[pieceType][testRotation][y][x] ~= ' ' and (
+          testX + x < 1
+          or testX + x > gridXCount
+        ) then
           return false
         end
       end
