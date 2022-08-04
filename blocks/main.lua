@@ -156,11 +156,14 @@ function love.load()
   function canPieceMove(testX, testY, testRotation)
     for y = 1, pieceXCount do
       for x = 1, pieceYCount do
+        local testBlockX = testX + x
+        local testBlockY = testY + y
+        
         if pieceStructures[pieceType][testRotation][y][x] ~= ' ' and (
-          testX + x < 1
-          or testX + x > gridXCount
-          or testY + y > gridYCount
-          or inert[testY + y][testX + x] ~= ' '
+          testBlockX < 1
+          or testBlockX > gridXCount
+          or testBlockY > gridYCount
+          or inert[testBlockY][testBlockX] ~= ' '
         ) then
           return false
         end
