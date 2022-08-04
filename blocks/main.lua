@@ -143,10 +143,14 @@ function love.load()
     }
   }
   
-  pieceType = 1
-  pieceRotation = 1
-  pieceX = 3
-  pieceY = 0
+  function newPiece()
+    pieceX = 3
+    pieceY = 0
+    pieceType = 1
+    pieceRotation = 1
+  end
+  
+  newPiece()
   
   pieceXCount = 4
   pieceYCount = 4
@@ -172,9 +176,6 @@ function love.load()
     
     return true
   end
-  
-  -- Temporary
-  inert[8][5] = 'z'
 end
 
 function love.update(dt)
@@ -186,10 +187,7 @@ function love.update(dt)
     if canPieceMove(pieceX, testY, pieceRotation) then
       pieceY = testY
     else
-      pieceX = 3
-      pieceY = 0
-      pieceType = 1
-      pieceRotation = 1
+      newPiece()
     end
   end
 end
