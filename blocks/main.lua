@@ -217,6 +217,22 @@ function love.update(dt)
         end
       end
       
+      -- Find complete rows
+      for y = 1, gridYCount do
+        local complete = true
+        for x = 1, gridXCount do
+          if inert[y][x] == ' ' then
+            complete = false
+            break
+          end
+        end
+        
+        if complete then
+          -- Temporary
+          print('Complete row: '..y)
+        end
+      end
+      
       newPiece()
     end
   end
