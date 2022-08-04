@@ -145,6 +145,9 @@ function love.load()
   
   pieceType = 1
   pieceRotation = 1
+  pieceX = 3
+  pieceY = 0
+  
 end
 
 function love.keypressed(key)
@@ -214,7 +217,7 @@ function love.draw()
     for x = 1, 4 do
       local block = pieceStructures[pieceType][pieceRotation][y][x]
       if block ~= ' ' then
-        drawBlock(block, x, y)
+        drawBlock(block, x + pieceX, y + pieceY)
       end
     end
   end
