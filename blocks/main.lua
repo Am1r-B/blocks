@@ -147,6 +147,7 @@ function love.load()
   pieceYCount = 4
   
   timer = 0
+  timerLimit = 0.5
   
   function canPieceMove(testX, testY, testRotation)
     for y = 1, pieceXCount do
@@ -198,7 +199,7 @@ end
 
 function love.update(dt)
   timer = timer + dt
-  if timer >= 0.5 then
+  if timer >= timerLimit then
     timer = 0
     
     local testY = pieceY + 1
@@ -209,7 +210,7 @@ function love.update(dt)
       for y = 1, pieceYCount do
         for x = 1, pieceXCount do
           local block =
-          pieceStructures[pieceType][pieceRotation][y][x]
+            pieceStructures[pieceType][pieceRotation][y][x]
           if block ~= ' ' then
             inert[pieceY + y][pieceX + x] = block
           end
@@ -259,6 +260,7 @@ function love.keypressed(key)
   elseif key == 'c' then
     while canPieceMove(pieceX, pieceY + 1, pieceRotation) do
       pieceY = pieceY + 1
+      timer = timerLimit
     end
     
   -- Temporary
