@@ -185,6 +185,11 @@ function love.update(dt)
     local testY = pieceY + 1
     if canPieceMove(pieceX, testY, pieceRotation) then
       pieceY = testY
+    else
+      pieceX = 3
+      pieceY = 0
+      pieceType = 1
+      pieceRotation = 1
     end
   end
 end
