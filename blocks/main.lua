@@ -159,6 +159,22 @@ function love.keypressed(key)
     if pieceRotation < 1 then
       pieceRotation = #pieceStructures[pieceType]
     end
+    
+  -- Temporary
+  elseif key == 'down' then
+    pieceType = pieceType + 1
+    if pieceType > #pieceStructures then
+      pieceType = 1
+    end
+    pieceRotation = 1
+    
+  -- Temporary
+  elseif key == 'up' then
+    pieceType = pieceType - 1
+    if pieceType < 1 then
+      pieceType = #pieceStructures
+    end
+    pieceRotation = 1
   end
 end
 
