@@ -147,6 +147,21 @@ function love.load()
   pieceRotation = 1
 end
 
+function love.keypressed(key)
+  if key == 'x' then
+    pieceRotation = pieceRotation + 1
+    if pieceRotation > #pieceStructures[pieceType] then
+      pieceRotation = 1
+    end
+    
+  elseif key == 'z' then
+    pieceRotation = pieceRotation - 1
+    if pieceRotation < 1 then
+      pieceRotation = #pieceStructures[pieceType]
+    end
+  end
+end
+
 function love.draw()
   function drawBlock(block, x, y)
     local colors = {
