@@ -148,6 +148,16 @@ function love.load()
   pieceX = 3
   pieceY = 0
   
+  timer = 0
+end
+
+function love.update(dt)
+  timer = timer + dt
+  if timer >= 0.5 then
+    timer = 0
+    -- Temporary
+    print('tick')
+  end
 end
 
 function love.keypressed(key)
