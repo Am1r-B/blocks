@@ -176,6 +176,20 @@ function love.load()
     
     return true
   end
+  
+  function newSequence()
+    sequence = {}
+    for pieceTypeIndex = 1, #pieceStructures do
+      local position = love.math.random(#sequence + 1)
+      table.insert(
+        sequence,
+        position,
+        pieceTypeIndex
+      )
+    end
+  end
+  
+  newSequence()
 end
 
 function love.update(dt)
@@ -233,20 +247,9 @@ function love.keypressed(key)
     end
     
   -- Temporary
-  elseif key == 'down' then
-    pieceType = pieceType + 1
-    if pieceType > #pieceStructures then
-      pieceType = 1
-    end
-    pieceRotation = 1
-    
-  -- Temporary
-  elseif key == 'up' then
-    pieceType = pieceType - 1
-    if pieceType < 1 then
-      pieceType = #pieceStructures
-    end
-    pieceRotation = 1
+  elseif key == 's' then
+    newSequence()
+    print(table.concat(sequence, ', '))
   end
 end
 
