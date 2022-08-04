@@ -148,11 +148,14 @@ function love.load()
   pieceX = 3
   pieceY = 0
   
+  pieceXCount = 4
+  pieceYCount = 4
+  
   timer = 0
   
   function canPieceMove(testX, testY, testRotation)
-    for y = 1, 4 do
-      for x = 1, 4 do
+    for y = 1, pieceXCount do
+      for x = 1, pieceYCount do
         if pieceStructures[pieceType][testRotation][y][x] ~= ' '
         and testX + x < 1 then
           return false
@@ -261,8 +264,8 @@ function love.draw()
     end
   end
   
-  for y = 1, 4 do
-    for x = 1, 4 do
+  for y = 1, pieceYCount do
+    for x = 1, pieceXCount do
       local block = pieceStructures[pieceType][pieceRotation][y][x]
       if block ~= ' ' then
         drawBlock(block, x + pieceX, y + pieceY)
