@@ -143,15 +143,6 @@ function love.load()
     }
   }
   
-  function newPiece()
-    pieceX = 3
-    pieceY = 0
-    pieceType = 1
-    pieceRotation = 1
-  end
-  
-  newPiece()
-  
   pieceXCount = 4
   pieceYCount = 4
   
@@ -190,6 +181,19 @@ function love.load()
   end
   
   newSequence()
+  
+  function newPiece()
+    pieceX = 3
+    pieceY = 0
+    pieceRotation = 1
+    pieceType = table.remove(sequence)
+    
+    if #sequence == 0 then
+      newSequence()
+    end
+  end
+  
+  newPiece()
 end
 
 function love.update(dt)
