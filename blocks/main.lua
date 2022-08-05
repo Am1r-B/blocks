@@ -228,8 +228,16 @@ function love.update(dt)
         end
         
         if complete then
-          -- Temporary
-          print('Complete row: '..y)
+          for removeY = y, 2, -1 do
+            for removeX = 1, gridXCount do
+              inert[removeY][removeX] =
+              inert[removeY - 1][removeX]
+            end
+          end
+          
+          for removeX = 1, gridXCount do
+            inert[1][removeX] = ' '
+          end
         end
       end
       
@@ -278,11 +286,6 @@ function love.keypressed(key)
       pieceY = pieceY + 1
       timer = timerLimit
     end
-    
-  -- Temporary
-  elseif key == 's' then
-    newSequence()
-    print(table.concat(sequence, ', '))
   end
 end
 
