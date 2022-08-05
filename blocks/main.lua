@@ -303,7 +303,8 @@ function love.draw()
       o = {.92, .69, .47},
       s = {.83, .54, .93},
       t = {.97, .58, .77},
-      z = {.66, .83, .46}
+      z = {.66, .83, .46},
+      preview = {.75, .75, .75}
     }
     local color = colors[block]
     love.graphics.setColor(color)
@@ -333,6 +334,15 @@ function love.draw()
       local block = pieceStructures[pieceType][pieceRotation][y][x]
       if block ~= ' ' then
         drawBlock(block, x + pieceX + offsetX, y + pieceY + offsetY)
+      end
+    end
+  end
+  
+  for y = 1, pieceYCount do
+    for x = 1, pieceXCount do
+      local block = pieceStructures[sequence[#sequence]][1][y][x]
+      if block ~= ' ' then
+        drawBlock('preview', x + 5, y + 1)
       end
     end
   end
