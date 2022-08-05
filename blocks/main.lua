@@ -319,9 +319,12 @@ function love.draw()
     )
   end
   
+  local offsetX = 2
+  local offsetY = 5
+  
   for y = 1, gridYCount do
     for x = 1, gridXCount do
-      drawBlock(inert[y][x], x, y)
+      drawBlock(inert[y][x], x + offsetX, y + offsetY)
     end
   end
   
@@ -329,7 +332,7 @@ function love.draw()
     for x = 1, pieceXCount do
       local block = pieceStructures[pieceType][pieceRotation][y][x]
       if block ~= ' ' then
-        drawBlock(block, x + pieceX, y + pieceY)
+        drawBlock(block, x + pieceX + offsetX, y + pieceY + offsetY)
       end
     end
   end
