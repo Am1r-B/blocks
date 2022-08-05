@@ -1,17 +1,6 @@
 function love.load()
   love.graphics.setBackgroundColor(1, 1, 1)
   
-  gridXCount = 10
-  gridYCount = 18
-  
-  inert = {}
-  for y = 1, gridYCount do
-    inert[y] = {}
-    for x = 1, gridXCount do
-      inert[y][x] = ' '
-    end
-  end
-  
   pieceStructures = {
     {
       {
@@ -143,10 +132,12 @@ function love.load()
     }
   }
   
+  gridXCount = 10
+  gridYCount = 18
+  
   pieceXCount = 4
   pieceYCount = 4
   
-  timer = 0
   timerLimit = 0.5
   
   function canPieceMove(testX, testY, testRotation)
@@ -181,8 +172,6 @@ function love.load()
     end
   end
   
-  newSequence()
-  
   function newPiece()
     pieceX = 3
     pieceY = 0
@@ -194,7 +183,22 @@ function love.load()
     end
   end
   
-  newPiece()
+  function reset()
+    inert = {}
+    for y = 1, gridYCount do
+      inert[y] = {}
+      for x = 1, gridXCount do
+        inert[y][x] = ' '
+      end
+    end
+    
+    newSequence()
+    newPiece()
+    
+    timer = 0
+  end
+  
+  reset()
 end
 
 function love.update(dt)
@@ -244,7 +248,7 @@ function love.update(dt)
       newPiece()
       
       if not canPieceMove(pieceX, pieceY, pieceRotation) then
-        love.load()
+        reset()
       end
     end
   end
